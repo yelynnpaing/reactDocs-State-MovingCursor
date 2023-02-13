@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useState } from 'react';
 
-function App() {
+const App = () => {
+
+  const [poisition , setPosition] = useState({
+    x : 0 , y : 0
+})
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      onPointerMove={e => 
+        setPosition ({
+          x : e.clientX,
+          y : e.clientY
+        })
+      }
+      style={{
+        poisition : 'relative',
+        width : '300px',
+        height : '300px',
+        background : 'yellow'
+      }}
+    >
+      <div
+        style={{
+          poisition : 'absolute',
+          width : '20px',
+          height : '20px',
+          borderRadius : '50%',
+          background : 'black', 
+          top : '-10px',
+          left : '-10px',
+          transform : `translate(${poisition.x}px , ${poisition.y}px)`
+        }}
+      >
+
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
